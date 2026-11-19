@@ -32,65 +32,64 @@ nothing and the search ends after one answer.
 
 ## P01
 
-Write one to three sentences here. Name the rule that fixes each field.
+The parent facts are tried top to bottom and the two with tom first give X=liz then X=bob. No more tom facts remain, so the count is 2.
 
 ## P02
 
-Write one to three sentences here. Name the rule that fixes each field.
+parent(tom, bob) is a fact, so the first answer is true. No other fact matches, so there is no second and the count is 1.
 
 ## P03
 
-Write one to three sentences here. Name the rule that fixes each field.
+No parent fact has tom as its child, so nothing unifies. The first answer is false, there is no second, and the count is 0.
 
 ## P04
 
-Write one to three sentences here. Name the rule that fixes each field.
+X = f(Y, a) binds X with Y still free, then Y = b fills it in so X=f(b, a). Unification is deterministic here, so there is one answer and no second.
 
 ## P05
 
-Write one to three sentences here. Name the rule that fixes each field.
+The two compound terms match argument by argument, binding X=a and Y=b. One clause head satisfies the goal, so there is one answer and no second.
 
 ## P06
 
-Write one to three sentences here. Name the rule that fixes each field.
+a and b are different atoms, so they cannot unify. The first answer is false, there is no second, and the count is 0.
 
 ## P07
 
-Write one to three sentences here. Name the rule that fixes each field.
+parent(tom, P) gives liz, which fails, then bob, whose children ann and pat become the answers. First is X=ann, second is X=pat, count 2.
 
 ## P08
 
-Write one to three sentences here. Name the rule that fixes each field.
+The base clause comes first, so liz and bob are printed before any recursion, then ann, pat, sue, jim follow. First is X=liz, second is X=bob, count 6.
 
 ## P09
 
-Write one to three sentences here. Name the rule that fixes each field.
+The recursive clause comes first, so the search dives down the first child before reading any base fact, and bob's base clause prints ann before the search returns upward. First is X=sue, second is X=ann, count 6.
 
 ## P10
 
-Write one to three sentences here. Name the rule that fixes each field.
+The base clause prints X=pat first, then the recursive clause climbs the family chain and the search tries X=bob directly before the deeper X=tom branch. First is X=pat, second is X=bob, count 3.
 
 ## P11
 
-Write one to three sentences here. Name the rule that fixes each field.
+The recursive clause comes first and calls itself with the same first argument before any edge is read. It never gets back, so all three fields are unbounded.
 
 ## P12
 
-Write one to three sentences here. Name the rule that fixes each field.
+The base clause fails, the recursive clause reaches edge(c, d) and answers true, then backtracking keeps looking for another path but the cycle traps the search before a second answer is found. First is true, second is unbounded, count is unbounded.
 
 ## P13
 
-Write one to three sentences here. Name the rule that fixes each field.
+Each list matches exactly one len clause, so the walk is deterministic down to []. First is N=3, second is none, count 1.
 
 ## P14
 
-Write one to three sentences here. Name the rule that fixes each field.
+join splits [1, 2] at each position, giving a distinct answer per split. First is X=[],Y=[1,2], second is X=[1],Y=[2], count 3.
 
 ## P15
 
-Write one to three sentences here. Name the rule that fixes each field.
+X is still unbound when X > 2 runs, so Prolog throws an instantiation error. All three fields are error.
 
 ## P16
 
-Write one to three sentences here. Name the rule that fixes each field.
-
+elem binds X first, so 1 > 2 and 2 > 2 fail and 3 > 2 succeeds. First is X=3, second is none, count 1.
