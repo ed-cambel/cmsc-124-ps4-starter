@@ -78,6 +78,8 @@ Two constants can be unfied, but they have to be either the same atoms or same n
 
 `reach_r(a, d)` calls the edge first `edge(a, d)`, which fails as no facts have match it and then, it goes to the recursive clause and finds `edge(a, Z)` matching `edge(a, b)`, binding `Z` to `b`. `reach_r(b, d)` runs the base case, which has no matching so it proceeds to the recursive cause `reach_r(b, Z)` unfying with `edge(b, c)`. Lastly, `reach_r(c, d)` runs and finally has a matching edge fact `edge(c, d)`, so it returns true with a count of `1`.
 
+Correction: After unifying with `edge(c,d)`, it still checked for other facts with c in its first argument. This matches `edge(c, a)`, but based on case P11, it never terminates so Prolog triggers an error. 
+
 ## P13
 
 `len([], 0).` fails because it is a non-empty list, so it instead runs the predicate `len([_|T], N)`, where `T = [b, c]` as the tail. It recursively calls the list and splits it each time until it calls `len([], M)` binding `M = 0`. It then backtracks for each element in the list, which results in `N = 3` and count of `1`.
