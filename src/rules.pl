@@ -28,12 +28,19 @@ cousin(X, Y) :-
     sibling(PX, PY).
 
 % descendant(D, A): A is an ancestor of D.
-%
+%   
 % Two clauses, the mirror image of ancestor/2 in cases/kb.pl. The base
 % clause reads one parent fact. The recursive clause reads one parent fact
 % and then asks a smaller question.
-descendant(_, _) :-
-    throw(not_implemented(descendant/2)).
+
+% base case
+descendant(D, A) :-
+    parent(A, D).
+
+% recursive case
+descendant(D, A) :-
+    parent(P, D),
+    descendant(P, A).
 
 %%% R2 -- lists.
 
