@@ -66,9 +66,17 @@ The base clause comes first, so liz and bob are printed before any recursion, th
 
 The recursive clause comes first, so the search dives down the first child before reading any base fact, and bob's base clause prints ann before the search returns upward. First is X=sue, second is X=ann, count 6.
 
+## Correction for P09
+
+I predicted X=ann second. The prompt printed X=jim second, because the recursive clause's parent(bob, P2) loop emits jim from pat's clause-2 answer before the recursive clause finishes and bob's clause-2 answer ann is emitted. I misread clause order: I assumed bob's base answer surfaces before the recursive descent continues through pat.
+
 ## P10
 
 The base clause prints X=pat first, then the recursive clause climbs the family chain and the search tries X=bob directly before the deeper X=tom branch. First is X=pat, second is X=bob, count 3.
+
+## Correction for P10
+
+I predicted X=bob second. The prompt printed X=tom second, because the recursive clause succeeds via X=tom, P=bob, P2=pat as soon as it reaches pat, so tom pops out before X=bob is tried directly. I misread goal order: I assumed the direct X=bob branch is tried before the deeper X=tom branch, instead of after.
 
 ## P11
 
@@ -77,6 +85,10 @@ The recursive clause comes first and calls itself with the same first argument b
 ## P12
 
 The base clause fails, the recursive clause reaches edge(c, d) and answers true, then backtracking keeps looking for another path but the cycle traps the search before a second answer is found. First is true, second is unbounded, count is unbounded.
+
+## Correction for P12
+
+I predicted the second field as unbounded. The prompt printed true, because the same ground goal reach_r(a, d) is re-derived through the c-a-b-c cycle, and each successful derivation counts as a separate answer even though the bindings are identical. I misread backtracking: I assumed a ground goal succeeds only once, instead of once per successful derivation, with the search then diverging so the count stays unbounded.
 
 ## P13
 
