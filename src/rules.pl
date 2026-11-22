@@ -16,37 +16,70 @@
 %
 % Order matters. X \= Y succeeds only when X and Y are already bound to
 % different things, so put it after the goal that binds them.
-sibling(_, _) :-
-    throw(not_implemented(sibling/2)).
+sibling(X, Y) :-
+    parent(Z, X),
+    parent(Z, Y),
+    X \= Y.
 
 % cousin(X, Y): a parent of X and a parent of Y are siblings.
-cousin(_, _) :-
-    throw(not_implemented(cousin/2)).
+cousin(X, Y) :-
+    parent(PX, X),
+    parent(PY,Y),
+    sibling(PX, PY).
 
 % descendant(D, A): A is an ancestor of D.
-%
+%   
 % Two clauses, the mirror image of ancestor/2 in cases/kb.pl. The base
 % clause reads one parent fact. The recursive clause reads one parent fact
 % and then asks a smaller question.
-descendant(_, _) :-
-    throw(not_implemented(descendant/2)).
+
+% base case
+descendant(D, A) :-
+    parent(A, D).
+
+% recursive case
+descendant(D, A) :-
+    parent(P, D),
+    descendant(P, A).
 
 %%% R2 -- lists.
 
 % count_of(X, List, N): X occurs N times in List. N is 0 for the empty
 % list, which is your base case.
-count_of(_, _, _) :-
-    throw(not_implemented(count_of/3)).
+
+% base case: empty list
+count_of(_, [], 0).
+
+% case 1: X matches head
+count_of(X, [X|T], N) :-
+    count_of(X, T, M),
+    N is M + 1.
+
+% case 2: X does not match head
+count_of(X, [H|T], N) :-   
+    X \= H,
+    count_of(X, T, N).
 
 % rev(List, Reversed): Reversed holds the elements of List in the other
 % order. Reverse the tail. Then use join/3 to put the head at the end.
-rev(_, _) :-
-    throw(not_implemented(rev/2)).
+
+% base case: empty list
+rev([], []).
+
+% recursive case: head is moved to other list
+rev([H|T], R) :-
+    rev(T, RR),
+    join(RR, [H], R).
 
 % last_of(List, X): X is the last element of List. The empty list has no
 % last element, so last_of([], X) must fail.
-last_of(_, _) :-
-    throw(not_implemented(last_of/2)).
+
+% base case: one element
+last_of([X], X).
+
+% case 1:
+last_of([_|T], X) :-
+    last_of(T, X).
 
 %%% R3 -- the graph.
 
@@ -58,5 +91,5 @@ last_of(_, _) :-
 % the cycle a -> b -> c -> a always offers one more edge. Carry the nodes
 % you visited. Refuse to step onto one again. \+ Goal is true when Goal
 % cannot be proved. That is how you say "not yet visited."
-route(_, _, _) :-
+route(_, _, _) :-   
     throw(not_implemented(route/3)).
