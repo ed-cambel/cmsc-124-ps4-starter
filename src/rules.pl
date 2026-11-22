@@ -66,15 +66,20 @@ count_of(X, [H|T], N) :-
 % base case: empty list
 rev([], []).
 
-% case 1: head is moved to other list
+% recursive case: head is moved to other list
 rev([H|T], R) :-
     rev(T, RR),
     join(RR, [H], R).
 
 % last_of(List, X): X is the last element of List. The empty list has no
 % last element, so last_of([], X) must fail.
-last_of(_, _) :-
-    throw(not_implemented(last_of/2)).
+
+% base case: one element
+last_of([X], X).
+
+% case 1:
+last_of([_|T], X) :-
+    last_of(T, X).
 
 %%% R3 -- the graph.
 
@@ -86,5 +91,5 @@ last_of(_, _) :-
 % the cycle a -> b -> c -> a always offers one more edge. Carry the nodes
 % you visited. Refuse to step onto one again. \+ Goal is true when Goal
 % cannot be proved. That is how you say "not yet visited."
-route(_, _, _) :-
+route(_, _, _) :-   
     throw(not_implemented(route/3)).
