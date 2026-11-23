@@ -91,5 +91,16 @@ last_of([_|T], X) :-
 % the cycle a -> b -> c -> a always offers one more edge. Carry the nodes
 % you visited. Refuse to step onto one again. \+ Goal is true when Goal
 % cannot be proved. That is how you say "not yet visited."
-route(_, _, _) :-   
-    throw(not_implemented(route/3)).
+
+% entry point: start the walk with an empty visited list.
+route(From, To, Path) :-
+    route_help(From, To, Path, []).
+
+% base: arrived at the destination, path is just [To].
+route_help(To, To, [To], _Visited).
+
+% step: take one edge to a neighbour not yet in Visited.
+route_help(From, To, [From|Rest], Visited) :-
+    edge(From, Next),
+    \+ elem(Next, Visited),
+    route_help(Next, To, Rest, [From|Visited]).
