@@ -1,8 +1,14 @@
 <!--no-pdf-->
+
 # CMSC 124 Problem Set 4 Starter
 
 This repository holds the Prolog prediction corpus and the rule stubs for
 Problem Set 4. The assignment manual defines the work and the submission rules.
+
+## Pair
+
+- Edriellen Mey G. Cambel (`@ed-cambel`)
+-
 
 ## Layout
 
@@ -69,11 +75,11 @@ the correct state for a starter. Your fork's run goes green when you finish.
 
 The grader scores `src/rules.pl` in three groups that stand on their own.
 
-| Group | What works | Predicates |
-|---|---|---|
-| R1 | the family rules, including the goal order that `\=` needs | `sibling/2`, `cousin/2`, `descendant/2` |
-| R2 | recursion over lists | `count_of/3`, `rev/2`, `last_of/2` |
-| R3 | a walk over the graph that ends, with a visited list | `route/3` |
+| Group | What works                                                 | Predicates                              |
+| ----- | ---------------------------------------------------------- | --------------------------------------- |
+| R1    | the family rules, including the goal order that `\=` needs | `sibling/2`, `cousin/2`, `descendant/2` |
+| R2    | recursion over lists                                       | `count_of/3`, `rev/2`, `last_of/2`      |
+| R3    | a walk over the graph that ends, with a visited list       | `route/3`                               |
 
 Each group has its own checks. Deleting `route/3` leaves R1 and R2 at full
 marks and zeroes R3. A missing rule also fails each rule that calls it. If
@@ -130,30 +136,30 @@ write answers the way the notation section of the manual says, with no spaces.
 
 These codes are the course contract.
 
-| Code | Command | Meaning |
-|---|---|---|
-| 0 | `./check.sh` | all 67 checks passed |
-| 1 | `./check.sh` | at least one check failed, or the grader stopped early |
-| 0 | `./lint` | `predictions.tsv` is well formed and complete |
-| 1 | `./lint` | the table is malformed or still holds a TODO |
-| 0 | `./run <case>` | `./run` found and printed the case |
-| 64 | `./run <case>` | the caller passed the wrong number of arguments |
-| 65 | `./run <case>` | the case id is unknown |
-| 0 | `./trace <case>` | `./trace` found and traced the case |
-| 64 | `./trace <case>` | the caller passed the wrong number of arguments |
-| 65 | `./trace <case>` | the case id is unknown |
+| Code | Command          | Meaning                                                |
+| ---- | ---------------- | ------------------------------------------------------ |
+| 0    | `./check.sh`     | all 67 checks passed                                   |
+| 1    | `./check.sh`     | at least one check failed, or the grader stopped early |
+| 0    | `./lint`         | `predictions.tsv` is well formed and complete          |
+| 1    | `./lint`         | the table is malformed or still holds a TODO           |
+| 0    | `./run <case>`   | `./run` found and printed the case                     |
+| 64   | `./run <case>`   | the caller passed the wrong number of arguments        |
+| 65   | `./run <case>`   | the case id is unknown                                 |
+| 0    | `./trace <case>` | `./trace` found and traced the case                    |
+| 64   | `./trace <case>` | the caller passed the wrong number of arguments        |
+| 65   | `./trace <case>` | the case id is unknown                                 |
 
 ## Tested Toolchains
 
 Every row below is a run that happened.
 
-| Environment | Version reported by `swipl --version` | Result |
-|---|---|---|
-| Windows 11 25H2, Git Bash, `winget install --id SWI-Prolog.SWI-Prolog` | `SWI-Prolog version 10.0.2 for x64-win64` | `1/67` on the starter, `67/67` with the instructor solution |
-| WSL Ubuntu 24.04, `apt-get install swi-prolog` | `SWI-Prolog version 9.0.4 for x86_64-linux` | `1/67` on the starter, `67/67` with the instructor solution |
-| GitHub Actions, `ubuntu-latest`, `apt-get install swi-prolog-nox` | `SWI-Prolog version 9.0.4 for x86_64-linux` | `1/67` on the starter |
-| GitHub Actions, `macos-latest`, `brew install swi-prolog` | `SWI-Prolog version 10.0.2 for arm64-darwin` | `1/67` on the starter |
-| GitHub Actions, `windows-latest`, the official `swipl-10.0.2-1.x64.exe` installer with `/S` | `SWI-Prolog version 10.0.2 for x64-win64` | `1/67` on the starter |
+| Environment                                                                                 | Version reported by `swipl --version`        | Result                                                      |
+| ------------------------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------- |
+| Windows 11 25H2, Git Bash, `winget install --id SWI-Prolog.SWI-Prolog`                      | `SWI-Prolog version 10.0.2 for x64-win64`    | `1/67` on the starter, `67/67` with the instructor solution |
+| WSL Ubuntu 24.04, `apt-get install swi-prolog`                                              | `SWI-Prolog version 9.0.4 for x86_64-linux`  | `1/67` on the starter, `67/67` with the instructor solution |
+| GitHub Actions, `ubuntu-latest`, `apt-get install swi-prolog-nox`                           | `SWI-Prolog version 9.0.4 for x86_64-linux`  | `1/67` on the starter                                       |
+| GitHub Actions, `macos-latest`, `brew install swi-prolog`                                   | `SWI-Prolog version 10.0.2 for arm64-darwin` | `1/67` on the starter                                       |
+| GitHub Actions, `windows-latest`, the official `swipl-10.0.2-1.x64.exe` installer with `/S` | `SWI-Prolog version 10.0.2 for x64-win64`    | `1/67` on the starter                                       |
 
 Two SWI-Prolog series grade this assignment, 9.0 and 10.0, and they agree.
 The grader re-derives all 48 published expectations before it scores anything,
