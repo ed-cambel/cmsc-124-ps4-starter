@@ -8,7 +8,7 @@ Problem Set 4. The assignment manual defines the work and the submission rules.
 ## Pair
 
 - Edriellen Mey G. Cambel (`@ed-cambel`)
--
+- Jhon Chriztopher M. Nice (`@TUP-e`)
 
 ## Layout
 
